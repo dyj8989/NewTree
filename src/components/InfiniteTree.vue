@@ -18,13 +18,13 @@ export default {
       allData: [],
       defaultProps: {
         childrenL: 'children',
-        label: 'label'
+        label: 'name'
       }
     }
   },
   methods: {
     async getList () {
-      const { data } = await getTreeList('/departments')
+      const { data } = await getTreeList('/employees')
       this.allData = data
       console.log(this.allData)
     }

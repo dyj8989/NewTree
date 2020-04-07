@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <new-tree :parentKey="parentId" :data="menuItems" v-if="menuItems.length>0" class="menuItems"></new-tree>
+    <new-tree parentKey="parentId" :data="menuItems" v-if="menuItems.length>0" class="menuItems"></new-tree>
     <br />
     <new-tree
-      :parentKey="parentId"
+      parentKey="pid"
       :data="employeesList"
       :props="defaultProps"
       class="employees"
@@ -11,7 +11,7 @@
     ></new-tree>
 
     <!-- 修改后的树形结构 -->
-    <infinite-tree parentKey="parentId"></infinite-tree>
+    <!-- <infinite-tree parentKey="pid"></infinite-tree> -->
   </div>
 </template>
 
@@ -20,7 +20,6 @@ import { getTreeList } from './api/request'
 export default {
   data () {
     return {
-      parentId: '',
       menuItems: [],
       employeesList: [],
       defaultProps: {
@@ -36,17 +35,12 @@ export default {
   methods: {
     async getList () {
       const { data } = await getTreeList('/departments')
-      // console.log(data)
 
       this.menuItems = data
-      this.parentId = 'parentId'
-      // console.log(this.menuItems)
     },
     async getEmployeesList () {
       const { data } = await getTreeList('/employees')
-      // console.log(data)
       this.employeesList = data
-      this.parentId = 'pid'
     }
   }
 }

@@ -1,6 +1,5 @@
 <template>
-  <el-tree :data="allData" default-expand-all :props="props
-  "></el-tree>
+  <el-tree :data="treeData" default-expand-all :props="props"></el-tree>
 </template>
 
 <script>
@@ -15,33 +14,22 @@ export default {
     parentKey: String,
     props: {
       type: Object,
-      default: () => {}
+      default: () => {
+        return {
+          children: 'children',
+          label: 'label'
+        }
+      }
     }
   },
-  data () {
-    return {
-      allData: []
-    }
-  },
-  created () {
-    this.transformData()
-  },
-
-  methods: {
-    transformData () {
-      // console.log(this.data)
-      // console.log(this.props)
-      const AllData = JSON.parse(JSON.stringify(this.data))
-      // console.log(AllData)
-      // console.log(this.parentKey)
-      this.allData = getTrees(AllData, 0, this.parentKey)
+  computed: {
+    treeData () {
+      return getTrees(this.data, 0, this.parentKey)
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
-// .el-tree {
-//   background-color: skyblue;
-// }
+
 </style>
