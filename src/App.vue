@@ -9,6 +9,9 @@
       class="employees"
       v-if="employeesList.length>0"
     ></new-tree>
+
+    <!-- 修改后的树形结构 -->
+    <infinite-tree parentKey="parentId"></infinite-tree>
   </div>
 </template>
 
@@ -41,7 +44,7 @@ export default {
     },
     async getEmployeesList () {
       const { data } = await getTreeList('/employees')
-      console.log(data)
+      // console.log(data)
       this.employeesList = data
       this.parentId = 'pid'
     }

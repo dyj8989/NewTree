@@ -29,8 +29,8 @@ export default {
 
   methods: {
     transformData () {
-      console.log(this.data)
-      console.log(this.props)
+      // console.log(this.data)
+      // console.log(this.props)
       const AllData = JSON.parse(JSON.stringify(this.data))
       // console.log(AllData)
       // console.log(this.parentKey)
